@@ -1,0 +1,14 @@
+{
+  "name": "profile-service",
+  "version": "1.0.0",
+  "description": "Get profiles from database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "navinkumar singh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
