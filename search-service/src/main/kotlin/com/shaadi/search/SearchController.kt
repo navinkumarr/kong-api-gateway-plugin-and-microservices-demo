@@ -51,8 +51,6 @@ class SearchController {
             .body(mapper.writeValueAsString(cacheData))
             .response()
 
-        println(response)
-        println(error)
     }
 
     fun fetchFromCache(profileids: String): SearchResponse? {
@@ -61,9 +59,6 @@ class SearchController {
 
         // not handling errors
         var (cacheResponse, error) = result;
-
-        println(cacheResponse)
-        println(error)
 
         if(cacheResponse == null  || cacheResponse.size == 0){
             return null
