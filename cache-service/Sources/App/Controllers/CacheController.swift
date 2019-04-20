@@ -5,7 +5,6 @@ import Vapor
 final class CacheController {
     /// Returns a list of all `Cache`s.
     func index(_ req: Request) throws -> Future<[Cache]> {
-
         let timestamp = Int(NSDate().timeIntervalSince1970)
         return Cache.query(on: req).filter(\.expiry > timestamp).all()
     }
