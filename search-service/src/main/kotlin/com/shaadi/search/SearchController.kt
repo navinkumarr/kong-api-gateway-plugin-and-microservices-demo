@@ -46,8 +46,13 @@ class SearchController {
 
         val cacheData = Cache(id = null, key = profileids, value = mapper.writeValueAsString(searchResponse.data), expiry = unixTime + 60)
 
-        Fuel.post("http://localhost:8080/cache/")
+        val (request, response, error) = Fuel.post("http://localhost:8080/cache/")
+            .header("Content-Type","application/json")
             .body(mapper.writeValueAsString(cacheData))
+            .response()
+
+        println(response)
+        println(error)
     }
 
     fun fetchFromCache(profileids: String): SearchResponse? {
@@ -56,6 +61,9 @@ class SearchController {
 
         // not handling errors
         var (cacheResponse, error) = result;
+
+        println(cacheResponse)
+        println(error)
 
         if(cacheResponse == null  || cacheResponse.size == 0){
             return null
