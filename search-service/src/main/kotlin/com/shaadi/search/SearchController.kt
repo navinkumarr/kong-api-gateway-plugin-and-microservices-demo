@@ -27,6 +27,20 @@ class SearchController {
         return fetchProfiles(profileids)
     }
 
+    fun fetchFromCache(profileids: String): searchResponse{
+        val (request, response, result) = Fuel.get("http://localhost:8081/cache/${profileids}")
+            .responseObject<SearchResponse>()
+
+        // not handling errors
+        var (searchResponse, error) = result;
+
+        if(searchResponse == null){
+            searchResponse = SearchResponse(data = listOf())
+        }
+
+        return searchResponse
+    }
+
     fun fetchProfiles(profileids: String): SearchResponse {
         val profiles = profileids.split(",")
 
