@@ -45,6 +45,8 @@ services:
 
   cache-service:
     build: ./cache-service
+    args:
+        env: docker
 
   profile-service:
     build: ./profile-service

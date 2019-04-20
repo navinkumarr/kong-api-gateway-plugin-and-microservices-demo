@@ -29,4 +29,4 @@ COPY --from=builder /build/lib/* /usr/lib/
 #COPY --from=builder /app/Resources ./Resources
 ENV ENVIRONMENT=$env
 
-ENTRYPOINT ./Run serve --env $ENVIRONMENT --hostname 0.0.0.0 --port 80
+ENTRYPOINT ./Run serve --env $ENVIRONMENT --hostname 0.0.0.0 --port 8080
