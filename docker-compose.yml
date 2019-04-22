@@ -32,8 +32,8 @@ services:
     depends_on:
       - kong-migration
     ports:
-      - "9000:8000"
-      - "9001:8001"
+      - "8000:8000"
+      - "8001:8001"
 
   kong-postgres:
     image: postgres:alpine
