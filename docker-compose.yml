@@ -8,7 +8,7 @@ services:
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=kong-postgres
       - KONG_PLUGINS=bundled,demoauth
-    command: kong migrations up
+    command: kong migrations bootstrap
 
   api-gateway:
     build: ./api-gateway
@@ -44,9 +44,10 @@ services:
       - "5433:5432"
 
   cache-service:
-    build: ./cache-service
-    args:
-        env: docker
+    build: 
+      context: ./cache-service
+      args:
+        env: "docker"
 
   profile-service:
     build: ./profile-service

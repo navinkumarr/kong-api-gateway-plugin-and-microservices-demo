@@ -1,7 +1,7 @@
 local BasePlugin = require "kong.plugins.base_plugin"
 local cjson = require "cjson"
-local constants = require "kong.plugins.shaadiauth.constants"
-local utils = require "kong.plugins.shaadiauth.utils"
+local constants = require "kong.plugins.demoauth.constants"
+local utils = require "kong.plugins.demoauth.utils"
 local kong_utils = require "kong.tools.utils"
 
 local type = type
@@ -22,7 +22,7 @@ end
 
 local function do_authentication(conf)
   if type(conf.key_names) ~= "table" then
-    kong.log.err("[shaadi-auth] no conf.key_names set, aborting plugin execution")
+    kong.log.err("[demo-auth] no conf.key_names set, aborting plugin execution")
     return false, {status = constants.STATUS.INTERNAL_SERVER_ERROR, message= constants.MESSAGE.INVALID_CONFIG}
   end
 
@@ -43,7 +43,7 @@ local function do_authentication(conf)
     return err_auth_failed()
   end
 
-  if key_parts[1] != "hackfest" || key_parts[2] != "demo" then
+  if key_parts[1] ~= "hackfest" or key_parts[2] ~= "demo" then
     return err_auth_failed()
   end
 

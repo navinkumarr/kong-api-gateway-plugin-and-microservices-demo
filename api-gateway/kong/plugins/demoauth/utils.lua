@@ -1,4 +1,4 @@
-local constants = require "kong.plugins.shaadiauth.constants"
+local constants = require "kong.plugins.demoauth.constants"
 
 local _M = {}
 
