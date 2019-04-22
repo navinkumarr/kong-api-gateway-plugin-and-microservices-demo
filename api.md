@@ -30,5 +30,3 @@ http :8080/cache
     
     # Create Route on Service
     jo -d. name="search-service-route" service.id="856704f8-aced-4d2e-8207-c75b22d1def7" paths[]="/v1/search" methods[]="GET" | http POST :8001/routes
-
-
