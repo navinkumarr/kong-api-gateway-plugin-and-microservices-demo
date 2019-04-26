@@ -8,6 +8,8 @@
     - Search Service (Kotlin)
     - Profile Service (NodeJS)
     - Cache Service (Swift)
+    
+![](assets/api-gatewa-demo-app-architecture-final.jpg)
 
 # Running the application
 
