@@ -1,0 +1,30 @@
+FROM alpine:3.6
+LABEL maintainer Navinkumar S, navinkumar.s@peopleinteractive.in
+
+ENV KONG_VERSION 1.0.2
+ENV KONG_SHA256 e15473300f60bee4e59e69115f6adb65356cb67c5b86fb0acc39243d8b4d6613
+
+RUN mkdir -p "/usr/local/kong" \
+	&& apk add --no-cache --virtual .build-deps wget tar ca-certificates libcap \
+	&& apk add --no-cache libgcc openssl pcre perl tzdata curl \
+	&& wget -O kong.tar.gz "https://bintray.com/kong/kong-community-edition-alpine-tar/download_file?file_path=kong-community-edition-$KONG_VERSION.apk.tar.gz" \
+	&& echo "$KONG_SHA256 *kong.tar.gz" | sha256sum -c - \
+	&& tar -xzf kong.tar.gz -C /tmp \
+	&& rm -f kong.tar.gz \
+	&& cp -R /tmp/usr / \
+	&& rm -rf /tmp/usr \
+	&& cp -R /tmp/etc / \
+	&& rm -rf /tmp/etc \
+	&& apk del .build-deps
+
+COPY ./kong/plugins/demoauth /usr/local/share/lua/5.1/kong/plugins/demoauth
+
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 8000 8443 8001 8444
+
+STOPSIGNAL SIGTERM
+
+CMD ["kong", "docker-start"]
