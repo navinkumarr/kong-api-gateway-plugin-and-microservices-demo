@@ -3,6 +3,7 @@ local cjson = require "cjson"
 local constants = require "kong.plugins.demoauth.constants"
 local utils = require "kong.plugins.demoauth.utils"
 local kong_utils = require "kong.tools.utils"
+local split = kong_utils.split
 
 local type = type
 local err_auth_failed = utils.err_auth_failed

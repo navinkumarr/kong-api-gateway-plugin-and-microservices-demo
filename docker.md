@@ -1,6 +1,6 @@
 # Rebuild single service
 
-    sudo docker-compose up --no-deps --build api-gateway
+    sudo docker-compose up --no-deps --force-recreate --no-start  --build api-gateway
 
 # Run docker 
 

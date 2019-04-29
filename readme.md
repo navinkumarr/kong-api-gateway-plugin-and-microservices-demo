@@ -44,10 +44,17 @@
 
 ``jo -d. name="search-service-route" service.id="856704f8-aced-4d2e-8207-c75b22d1def7" paths[]="/v1/search" methods[]="GET" | http POST :8001/routes``
     
+* **Activate auth plugin on Search Service**
+
+``jo name=demoauth | http POST :8001/services/search-service/plugin``
     
-# Accessing API
+# Accessing API without activating auth plugin
 
 ``http :8081/search?profileids=a1q1q1``
+
+# Accessing API With authkey header after activating auth plugin
+
+``http :8000/v1/search?profileids=a1q1q1 authkey:"hackfest|demo|"``
 
 # External Links
 
